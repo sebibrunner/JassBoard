@@ -12,16 +12,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-
-    - uses: actions/download-artifact@master
+    - name: Download artifact
+      uses: dawidd6/action-download-artifact@v2
       with:
+        workflow: Build.yml
+        workflow_conclusion: success
+        # Optional, will get head commit SHA
+        pr: ${{github.event.pull_request.number}}
+        # Optional, no need to specify if PR is
+        commit: ${{github.event.pull_request.head.sha}}
+        # Optional, will use the branch
+        branch: develop, master
         name: dist-jassboard
-        path: dist
-
+        # Optional, directory where to extract artifact
+        path: extracted_artifact
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
         server: ${{ secrets.ftp_server }}
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
-        local-dir: dist/
+        local-dir: extracted_artifact/
