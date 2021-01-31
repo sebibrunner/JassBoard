@@ -5,9 +5,9 @@ jobs:
     name: Ubuntu build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@develop
 
-    - uses: actions/download-artifact@master
+    - uses: actions/download-artifact@develop
       with:
         name: dist-jassboard
         path: dist
