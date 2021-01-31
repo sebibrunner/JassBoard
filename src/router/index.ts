@@ -31,8 +31,7 @@ const routes: Array<RouteConfig> = [
   {
     path: "/game",
     name: "Game",
-    component: () =>
-      import(/* webpackChunkName: "game" */ "../views/Game.vue")
+    component: () => import(/* webpackChunkName: "game" */ "../views/Game.vue")
   },
   {
     path: "/modes",

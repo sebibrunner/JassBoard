@@ -1,18 +1,23 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import GameMode from "@/types/GameMode.ts"
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    gameModes: {},
+    gameModes: Array<GameMode>()
   },
-  mutations: {},
+  mutations: {
+    addGameMode(state, gameMode){
+      state.gameModes.push(gameMode)
+    },
+  },
   actions: {},
   modules: {},
   getters: {
     allGameModes: state => {
-        return state.gameModes
-    },
-  },
+      return state.gameModes;
+    }
+  }
 });
