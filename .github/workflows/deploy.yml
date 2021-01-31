@@ -1,19 +1,17 @@
 name: Deploy
 on: [push, workflow_dispatch]
-jobs:
-  deploy:
-    steps:
-    - uses: actions/checkout@master
+steps:
+- uses: actions/checkout@master
 
-    - uses: actions/download-artifact@master
-      with:
-        name: dist-jassboard
-        path: dist
+- uses: actions/download-artifact@master
+  with:
+    name: dist-jassboard
+    path: dist
 
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.0.0
-      with:
-        server: ${{ secrets.ftp_server }}
-        username: ${{ secrets.ftp_username }}
-        password: ${{ secrets.ftp_password }}
-        local-dir: dist/
+- name: 📂 Sync files
+  uses: SamKirkland/FTP-Deploy-Action@4.0.0
+  with:
+    server: ${{ secrets.ftp_server }}
+    username: ${{ secrets.ftp_username }}
+    password: ${{ secrets.ftp_password }}
+    local-dir: dist/
