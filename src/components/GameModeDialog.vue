@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import GameMode from "@/types/GameMode.ts";
 export default {
   data() {
     return {

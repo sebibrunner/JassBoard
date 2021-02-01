@@ -7,15 +7,14 @@
   </div>
 </template>
 
-<script lang="ts">
-import GameMode from "@/types/GameMode"
+<script>
 export default {
   name: "GameMode",
   props: {
     gameMode: {}
   },
   methods: {
-    removeGameMode(){
+    removeGameMode() {
       this.$emit("removeGameMode", this.gameMode);
     }
   }
