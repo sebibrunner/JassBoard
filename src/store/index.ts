@@ -9,7 +9,7 @@ export default new Vuex.Store({
     gameModes: Array<GameMode>()
   },
   mutations: {
-    addGameMode(state, gameMode){
+    addGameMode(state, gameMode: GameMode){
       state.gameModes.push(gameMode)
     },
   },

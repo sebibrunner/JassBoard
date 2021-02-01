@@ -1,8 +1,8 @@
 <template>
   <div class="modes">
     <h1>Modes</h1>
-    <GameMode v-for="gameMode in allGameModes" :key="gameMode" :gameMode="gameMode"></GameMode>
-    <GameModeDialog data-app v-if="this.isGameModeDialogOpen" @close="this.toggleGameModeDialog" @save="this.addGameMode"></GameModeDialog>
+    <GameMode v-for="(gameMode, index) in allGameModes" :key="index" :gameMode="gameMode"></GameMode>
+    <GameModeDialog data-app v-if="isGameModeDialogOpen" @close="toggleGameModeDialog" @save="addGameMode" @click-outside="toggleGameModeDialog"></GameModeDialog>
     <v-dialog></v-dialog>
     <v-btn
     v-if="!this.isGameModeDialogOpen"
@@ -39,6 +39,7 @@ export default {
       },
       addGameMode(gameMode){
           this.$store.commit('addGameMode', gameMode);
+          this.toggleGameModeDialog();
       },
   },
   computed: {

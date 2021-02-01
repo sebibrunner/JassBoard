@@ -1,10 +1,12 @@
 <template>
   <v-row justify="center">
       <v-dialog
+      v-click-outside="onClickOutside"
       v-model="dialog"
       max-width="290"
     >
-      <v-card>
+      <v-card
+      >
         <v-card-title>
           <span class="headline">GameMode</span>
         </v-card-title>
@@ -17,8 +19,8 @@
                 md="4"
               >
                 <v-text-field
-                v-model="gameMode.name"
-                  label="Name"
+                v-model="newGameMode.name"
+                  label="Name*"
                   required
                 ></v-text-field>
               </v-col>
@@ -28,8 +30,8 @@
                 md="4"
               >
                 <v-text-field
-                v-model="gameMode.multiplier"
-                  label="Multiplier"
+                v-model="newGameMode.multiplier"
+                  label="Multiplier*"
                   required
                 ></v-text-field>
               </v-col>
@@ -49,7 +51,7 @@
           <v-btn
             color="blue darken-1"
             text
-            @click="$emit('save', gameMode)"
+            @click="$emit('save', newGameMode)"
           >
             Save
           </v-btn>
@@ -60,13 +62,18 @@
 </template>
 
 <script>
-import GameMode from "@/types/GameMode";
+import GameMode from "@/types/GameMode.ts"
 export default {
     data(){
         return {
             dialog: true,
-            gameMode: GameMode,
+            newGameMode: {name: "Name", multiplier: 1},
         }
-    }
+    },
+    methods: {
+      onClickOutside(){
+        this.$emit('close');
+      },
+    },
 }
 </script>
