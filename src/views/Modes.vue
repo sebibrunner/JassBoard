@@ -1,11 +1,21 @@
 <template>
   <div class="modes">
     <h1>Modes</h1>
-    <GameMode v-for="(gameMode, index) in allGameModes" :key="index" :gameMode="gameMode"></GameMode>
-    <GameModeDialog data-app v-if="isGameModeDialogOpen" @close="toggleGameModeDialog" @save="addGameMode" @click-outside="toggleGameModeDialog"></GameModeDialog>
+    <GameMode
+      v-for="(gameMode, index) in allGameModes"
+      :key="index"
+      :gameMode="gameMode"
+      @removeGameMode="removeGameMode"
+    ></GameMode>
+    <GameModeDialog
+      data-app
+      v-if="isGameModeDialogOpen"
+      @close="toggleGameModeDialog"
+      @save="addGameMode"
+    ></GameModeDialog>
     <v-dialog></v-dialog>
     <v-btn
-    v-if="!this.isGameModeDialogOpen"
+      v-if="!this.isGameModeDialogOpen"
       class="mx-2"
       fab
       dark
@@ -30,17 +40,20 @@ export default {
   },
   data: () => {
     return {
-        isGameModeDialogOpen: false,
-    }
+      isGameModeDialogOpen: false
+    };
   },
   methods: {
-      toggleGameModeDialog(){
-          this.isGameModeDialogOpen = !this.isGameModeDialogOpen;
-      },
-      addGameMode(gameMode){
-          this.$store.commit('addGameMode', gameMode);
-          this.toggleGameModeDialog();
-      },
+    toggleGameModeDialog() {
+      this.isGameModeDialogOpen = !this.isGameModeDialogOpen;
+    },
+    addGameMode(gameMode) {
+      this.$store.commit("addGameMode", gameMode);
+      this.toggleGameModeDialog();
+    },
+    removeGameMode(gameMode) {
+      this.$store.commit("removeGameMode", gameMode);
+    }
   },
   computed: {
     allGameModes() {
@@ -51,6 +64,5 @@ export default {
 </script>
 <style lang="less">
 .gameModeDialog {
-
 }
 </style>
