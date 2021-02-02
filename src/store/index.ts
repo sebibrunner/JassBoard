@@ -10,23 +10,23 @@ const rose = { name: "Rose", multiplier: 1 };
 const eichle = { name: "Eichle", multiplier: 2 };
 const schelle = { name: "Schelle", multiplier: 3 };
 const schilte = { name: "Schilte", multiplier: 4 };
-const une = { name: "Uneufe", multiplier: 5 };
-const obe = { name: "Obeabe", multiplier: 6 };
+const obe = { name: "Obeabe", multiplier: 5 };
+const une = { name: "Uneufe", multiplier: 6 };
 const slalom = { name: "Slalom", multiplier: 7 };
-const threethree = { name: "Drü mol Drü", multiplier: 8 };
-const fivefour = { name: "Füf Vier", multiplier: 9 };
+const fivefour = { name: "Füf Vier", multiplier: 8 };
+const threethree = { name: "Drü mol Drü", multiplier: 9 };
 const misere = { name: "Misère", multiplier: 10 };
 const wish = { name: "Wunsch", multiplier: 11 };
 initGameModes.push(
   rose,
   eichle,
   schelle,
-  schilte,
-  une,
+  schilte,  
   obe,
-  slalom,
-  threethree,
+  une,
+  slalom,  
   fivefour,
+  threethree,
   misere,
   wish
 );
