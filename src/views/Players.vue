@@ -1,13 +1,19 @@
 <template>
   <div>
     <div>
-      Created Players
-      <Player
-        v-for="(player, index) in this.players"
-        :key="index"
-        :player="player"
-        @removePlayer="removePlayer"
-      />
+      <v-container class="grey lighten-5">
+        <v-row>
+        Created Players
+        </v-row>
+        <v-row>
+        <Player
+          v-for="(player, index) in this.allPlayers"
+          :key="index"
+          :player="player"
+          @removePlayer="removePlayer"
+        />
+        </v-row>
+      </v-container>
     </div>
     <div>
       Create new player
@@ -45,28 +51,7 @@
                   >
                 </select>
               </div>
-              <div class="col-md-12">
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  @click="onCapture"
-                >
-                  Capture Photo
-                </button>
-                <button type="button" class="btn btn-danger" @click="onStop">
-                  Stop Camera
-                </button>
-                <button type="button" class="btn btn-success" @click="onStart">
-                  Start Camera
-                </button>
-              </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <h2>Player Image</h2>
-            <figure class="figure">
-              <img :src="newPlayer.picture" class="img-responsive" />
-            </figure>
           </div>
         </div>
       </div>
@@ -102,7 +87,10 @@ export default {
   computed: {
     device: function() {
       return this.devices.find(n => n.deviceId === this.deviceId);
-    }
+    },
+    allPlayers(){
+      return this.$store.getters.allPlayers;
+    },
   },
   watch: {
     camera: function(id) {
@@ -149,15 +137,23 @@ export default {
       console.log("On Camera Change Event", deviceId);
     },
     createNewPlayer() {
+      this.onCapture();
+      this.$store.commit('addPlayer', this.newPlayer);
+      /*
+      this.onCapture();
       this.players.push(this.newPlayer);
+      */
       this.newPlayer = {
         name: "",
         picture: null
       };
     },
     removePlayer(player) {
+      this.$store.commit('removePlayer', player)
+      /*
       const index = this.players.indexOf(player);
       this.players.splice(index, 1);
+      */
     }
   }
 };

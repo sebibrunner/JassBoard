@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import GameMode from "@/types/GameMode.ts";
+import PlayerModule from "@/store/modules/player";
 
 Vue.use(Vuex);
 
@@ -45,7 +46,9 @@ export default new Vuex.Store({
     }
   },
   actions: {},
-  modules: {},
+  modules: {
+    PlayerModule,
+  },
   getters: {
     allGameModes: state => {
       return state.gameModes;

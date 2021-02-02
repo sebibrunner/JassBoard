@@ -1,12 +1,27 @@
 <template>
-  <div class="player">
-    <h2>Player</h2>
-    <div>Name: {{ this.player.name }}</div>
-    <figure class="figure">
-      <img :src="player.picture" class="img-responsive" />
-    </figure>
-    <v-btn @click="removeGameMode">Remove player</v-btn>
-  </div>
+
+  <v-card
+    class="mx-auto"
+    max-width="200"
+  >
+    <v-img
+      :src="player.picture"
+      height="200px"
+    ></v-img>
+
+    <v-card-title>
+      {{this.player.name}}
+    </v-card-title>
+
+    <v-card-actions>
+      <v-btn
+        icon
+        @click="removePlayer"
+      >
+        <v-icon>{{ 'mdi-account-remove' }}</v-icon>
+      </v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>
