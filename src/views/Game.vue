@@ -1,12 +1,23 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import {gameStore} from '@/store/store'
+</script>
 
-defineProps<{ msg: string }>()
+<script lang="ts">
+import { mapActions, mapState } from 'pinia'
 
-const count = ref(0)
+export default {
+  computed: {
+    ...mapState(gameStore, {getGames: 'games'}),
+    
+  },
+
+  methods: {
+    ...mapActions(gameStore, ['createGame'])
+  }
+};
 </script>
 
 <template>
-    Game
+    <button @click="createGame()">New Game!</button>
     
 </template>
