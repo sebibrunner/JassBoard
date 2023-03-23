@@ -22,6 +22,23 @@ export const gameStore = defineStore('game-store', {
     actions: {
         createGame() {
             this.currentGame.id = uuidv4();
+            this.currentGame.positions = [
+                {name: "Rose", multiplier: 1},
+                {name: "Eischle", multiplier: 2},
+                {name: "Schelle", multiplier: 3},
+                {name: "Schilte", multiplier: 4},
+            ]
         },
+        saveGame(game: Game) {
+            this.games.push(game);
+        },
+        deleteGame(game: Game) {
+            const index = this.games.indexOf(game);
+            this.games.splice(index, 1);
+        },
+        loadGame(game: Game) {
+            const index = this.games.indexOf(game);
+            this.currentGame = this.games[index];
+        }
     }
 })

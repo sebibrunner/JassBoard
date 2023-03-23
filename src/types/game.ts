@@ -1,6 +1,6 @@
-import { v4 as uuidv4 } from "uuid";
+import { JassType } from "./jassType"
 
 export interface Game {
     id?: string,
-
+    positions: Array<JassType>
 }
