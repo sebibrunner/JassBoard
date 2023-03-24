@@ -25,7 +25,7 @@ export const gameStore = defineStore('game-store', {
             this.currentGame.id = uuidv4();
             this.currentGame.positions = [
                 {name: "Rose", multiplier: 1},
-                {name: "Eischle", multiplier: 2},
+                {name: "Eichle", multiplier: 2},
                 {name: "Schelle", multiplier: 3},
                 {name: "Schilte", multiplier: 4},
             ]

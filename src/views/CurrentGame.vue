@@ -22,8 +22,12 @@ export default {
 
     <h1>Game</h1>
         ID: {{ getCurrentGame.id }}
-        <div v-for="position in getCurrentGame.positions">
-        Name: {{ position.name }}, Multiplier: {{ position.multiplier }}, ResultLeft: {{ position.resultLeft }}, ResultRight: {{ position.resultRight }}
+        <div v-for="position in getCurrentGame.positions" class="grid grid-cols-7">
+          <div>Name: {{ position.name }}</div>
+          <div>Multiplier: {{ position.multiplier }}</div>
+          <div><label>ResultLeft: </label><input v-model="position.resultLeft"></div>
+          <div>ResultRight: <input v-model="position.resultRight"></div>
+          <div>Difference: {{ position.resultLeft - position.resultRight }}</div>
         </div>
         <button @click="saveGame(getCurrentGame)">Save this Game!</button>
     
