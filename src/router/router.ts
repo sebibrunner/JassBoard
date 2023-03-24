@@ -10,7 +10,7 @@ export default createRouter({
     },
     {
       path: '/game',
-      component: () => import('@/views/Game.vue'),
+      component: () => import('@/views/CurrentGame.vue'),
     },
     {
       path: '/history',
