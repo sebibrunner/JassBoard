@@ -2,23 +2,29 @@ name: CI
 on: [push, workflow_dispatch]
 jobs:
   build:
-    name: Ubuntu build
+    name: Build
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: borales/actions-yarn@v2.0.0
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
         with:
-          cmd: install # will run `yarn install` command
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: build # will run `yarn build` command
-      - name: Archive production artifacts
+          node-version: 16
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Build project
+        run: npm run build
+
+      - name: Upload production-ready build files
         uses: actions/upload-artifact@v2
         with:
-          name: jassboard
-          path: |
-            dist
-            !dist/**/*.md
+          name: production-files
+          path: ./dist
   deploy:
     name: Ubuntu deployment
     runs-on: ubuntu-latest

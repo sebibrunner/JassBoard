@@ -1,12 +1,13 @@
 import { defineStore } from 'pinia'
 import { Game } from '@/types/game';
 import { v4 as uuidv4 } from "uuid";
+import { useStorage } from '@vueuse/core'
 
 export const gameStore = defineStore('game-store', {
     state: () => {
         return {
-            currentGame: {} as Game,
-            games: [] as Array<Game>
+            currentGame: useStorage('currentGame', {} as Game),
+            games: useStorage('games', [] as Array<Game>)
         }
     },
 
