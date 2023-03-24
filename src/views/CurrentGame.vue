@@ -21,13 +21,43 @@ export default {
     <button @click="createGame()">New Game!</button>
 
     <h1>Game</h1>
-        ID: {{ getCurrentGame.id }}
-        <div v-for="position in getCurrentGame.positions" class="grid grid-cols-7">
-          <div>Name: {{ position.name }}</div>
-          <div>Multiplier: {{ position.multiplier }}</div>
-          <div><label>ResultLeft: </label><input v-model="position.resultLeft"></div>
-          <div>ResultRight: <input v-model="position.resultRight"></div>
-          <div>Difference: {{ position.resultLeft - position.resultRight }}</div>
+    <h4>ID: {{ getCurrentGame.id }}</h4>
+    <ui-grid class="demo-grid">
+      <ui-grid-cell class="demo-cell" columns="1">
+        Type
+      </ui-grid-cell>
+      <ui-grid-cell class="demo-cell" columns="1">
+        Multiplier
+      </ui-grid-cell>
+      <ui-grid-cell class="demo-cell" columns="1">
+        Team 1
+      </ui-grid-cell>
+      <ui-grid-cell class="demo-cell" columns="1">
+        Team 2
+      </ui-grid-cell>
+      <ui-grid-cell class="demo-cell" columns="1">
+        Diff
+      </ui-grid-cell>
+    </ui-grid>
+    <ui-grid>
+      <ui-grid-cell v-for="position in getCurrentGame.positions">
+        {{ position.name }}
+      </ui-grid-cell>
+    </ui-grid>
+        
+        <div class="grid grid-cols-5">
+          <div>Type</div>
+          <div>Multiplier</div>
+          <div>Team 1</div>
+          <div>Team 2</div>
+          <div>Diff</div>
+        </div>
+        <div v-for="position in getCurrentGame.positions" class="grid grid-cols-5">
+          <div>{{ position.name }}</div>
+          <div>{{ position.multiplier }}</div>
+          <div><ui-textfield v-model="position.resultLeft" placeholder="Result Team 1" type="number"></ui-textfield></div>
+          <div><ui-textfield v-model="position.resultRight" placeholder="Result Team 2" type="number"></ui-textfield></div>
+          <div>{{ position.resultLeft - position.resultRight }}</div>
         </div>
         <button @click="saveGame(getCurrentGame)">Save this Game!</button>
     

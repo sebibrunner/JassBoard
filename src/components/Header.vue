@@ -1,9 +1,5 @@
-<script setup lang="ts">
-import Header from './components/Header.vue';
-</script>
-
 <template>
-      <div class="demo-container">
+    <div class="demo-container">
   <!-- Drawer -->
   <ui-drawer type="modal" nav-id="demo-menu">
     <ui-drawer-header>
@@ -38,9 +34,8 @@ import Header from './components/Header.vue';
     </ui-top-app-bar>
     <!-- App content -->
     <div class="demo-app-content">
-      <router-view></router-view>
+      <p v-for="i in 24" :key="i">Main Content {{ i }}</p>
     </div>
   </div>
 </div>
-  
 </template>
