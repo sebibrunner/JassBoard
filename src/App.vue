@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import Sidebar from './components/Sidebar.vue';
+import Navigation from './components/Navigation.vue';
 </script>
 
 <template>
-  <div class="flex">
-    <aside>
-        <Sidebar />
-    </aside>
+  <div class="flex-col">
+    <Navigation />
     
     <main>
       <router-view></router-view>
