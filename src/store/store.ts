@@ -24,10 +24,17 @@ export const gameStore = defineStore('game-store', {
         createGame() {
             this.currentGame.id = uuidv4();
             this.currentGame.positions = [
-                {name: "Rose", multiplier: 1},
-                {name: "Eichle", multiplier: 2},
-                {name: "Schelle", multiplier: 3},
-                {name: "Schilte", multiplier: 4},
+                {name: "Rose", multiplier: 1, resultLeft: 0, resultRight: 0},
+                {name: "Eichle", multiplier: 2, resultLeft: 0, resultRight: 0},
+                {name: "Schelle", multiplier: 3, resultLeft: 0, resultRight: 0},
+                {name: "Schilte", multiplier: 4, resultLeft: 0, resultRight: 0},
+                {name: "Obeabe", multiplier: 5, resultLeft: 0, resultRight: 0},
+                {name: "Uneufe", multiplier: 6, resultLeft: 0, resultRight: 0},
+                {name: "3x3", multiplier: 7, resultLeft: 0, resultRight: 0},
+                {name: "Slalom", multiplier: 8, resultLeft: 0, resultRight: 0},
+                {name: "5-4", multiplier: 9, resultLeft: 0, resultRight: 0},
+                {name: "Misere", multiplier: 10, resultLeft: 0, resultRight: 0},
+                {name: "Wunsch", multiplier: 11, resultLeft: 0, resultRight: 0}
             ]
         },
         saveGame(game: Game) {
