@@ -19,12 +19,16 @@ export default {
 
 <template>
     <h1>History</h1>
-    <div v-for="game in getGames">
-        ID: {{ game.id }}
-        <div v-for="position in game.positions">
-        Name: {{ position.name }}, Multiplier: {{ position.multiplier }}, ResultLeft: {{ position.resultLeft }}, ResultRight: {{ position.resultRight }}
-        </div>
-        <button @click="loadGame(game)">Load this Game!</button>
-        <button @click="deleteGame(game)">Delete this Game!</button>
-    </div>
+    <ui-list>
+      <ui-item v-for="game in getGames" :key="game">
+        <ui-item-text-content>
+          ID: {{ game.id }}
+        </ui-item-text-content>
+        <ui-item-last-content>
+          <ui-icon @click="loadGame(game)">file_upload</ui-icon>
+          <ui-icon @click="deleteGame(game)">clear</ui-icon>
+        </ui-item-last-content>
+      </ui-item>
+    </ui-list>
+
 </template>
