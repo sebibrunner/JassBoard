@@ -55,7 +55,7 @@ export default {
     <!-- Total -->
     <div class="grid grid-flow-row grid-cols-5 auto-rows-auto gap-4 text-center">
       Total:
-      <div class="col-end-6" :class="{ 'bg-emerald-300': this.gameTotal > 0, 'bg-pink-300': this.gameTotal < 0 }">{{ this.gameTotal }}
+      <div class="col-end-6" :class="{ 'bg-emerald-300': gameTotal > 0, 'bg-pink-300': gameTotal < 0 }">{{ gameTotal }}
       </div>
     </div>
     <div class="flex justify-center">
