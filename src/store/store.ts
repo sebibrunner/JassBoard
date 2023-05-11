@@ -10,13 +10,36 @@ export const gameStore = defineStore('game-store', {
             games: useStorage('games', [] as Array<Game>)
         }
     },
-
     getters: {
         getGames(state) {
             return state.games;
         },
         getCurrentGame(state) {
             return state.currentGame;
+        },
+        getSumLeft(state) {
+            const values = Object.values(state.currentGame.positions);
+            const sumLeft = values.reduce((accumulator, value) => {
+                return accumulator + value.multiplier * value.resultLeft;
+            }, 0);
+            return sumLeft;
+        },
+        getSumRight(state) {
+            const values = Object.values(state.currentGame.positions);
+            const sumLeft = values.reduce((accumulator, value) => {
+                return accumulator + value.multiplier * value.resultRight;
+            }, 0);
+            return sumLeft;
+        },
+        getGameTotal(state) {
+            const values = Object.values(state.currentGame.positions);
+            const sumLeft = values.reduce((accumulator, value) => {
+                return accumulator + value.multiplier * value.resultLeft;
+            }, 0);
+            const sumRight = values.reduce((accumulator, value) => {
+                return accumulator + value.multiplier * value.resultRight;
+            }, 0);
+            return sumLeft - sumRight;
         }
     },
 
@@ -24,17 +47,17 @@ export const gameStore = defineStore('game-store', {
         createGame() {
             this.currentGame.id = uuidv4();
             this.currentGame.positions = [
-                {name: "Rose", multiplier: 1, resultLeft: 0, resultRight: 0},
-                {name: "Eichle", multiplier: 2, resultLeft: 0, resultRight: 0},
-                {name: "Schelle", multiplier: 3, resultLeft: 0, resultRight: 0},
-                {name: "Schilte", multiplier: 4, resultLeft: 0, resultRight: 0},
-                {name: "Obeabe", multiplier: 5, resultLeft: 0, resultRight: 0},
-                {name: "Uneufe", multiplier: 6, resultLeft: 0, resultRight: 0},
-                {name: "3x3", multiplier: 7, resultLeft: 0, resultRight: 0},
-                {name: "Slalom", multiplier: 8, resultLeft: 0, resultRight: 0},
-                {name: "5-4", multiplier: 9, resultLeft: 0, resultRight: 0},
-                {name: "Misere", multiplier: 10, resultLeft: 0, resultRight: 0},
-                {name: "Wunsch", multiplier: 11, resultLeft: 0, resultRight: 0}
+                { name: "Rose", multiplier: 1, resultLeft: 0, resultRight: 0 },
+                { name: "Eichle", multiplier: 2, resultLeft: 0, resultRight: 0 },
+                { name: "Schelle", multiplier: 3, resultLeft: 0, resultRight: 0 },
+                { name: "Schilte", multiplier: 4, resultLeft: 0, resultRight: 0 },
+                { name: "Obeabe", multiplier: 5, resultLeft: 0, resultRight: 0 },
+                { name: "Uneufe", multiplier: 6, resultLeft: 0, resultRight: 0 },
+                { name: "3x3", multiplier: 7, resultLeft: 0, resultRight: 0 },
+                { name: "Slalom", multiplier: 8, resultLeft: 0, resultRight: 0 },
+                { name: "5-4", multiplier: 9, resultLeft: 0, resultRight: 0 },
+                { name: "Misere", multiplier: 10, resultLeft: 0, resultRight: 0 },
+                { name: "Wunsch", multiplier: 11, resultLeft: 0, resultRight: 0 }
             ]
         },
         saveGame(game: Game) {

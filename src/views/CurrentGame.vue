@@ -7,26 +7,8 @@ import { mapActions, mapState } from 'pinia'
 
 export default {
   computed: {
-    ...mapState(gameStore, { getCurrentGame: 'currentGame' }),
-    sumLeft(){
-      const values = Object.values(this.getCurrentGame.positions);
-      const sumLeft = values.reduce((accumulator, value) => {
-        return accumulator + value.multiplier * value.resultLeft;
-      }, 0);
-      return sumLeft;
-    },
-    sumRight(){
-      const values = Object.values(this.getCurrentGame.positions);
-      const sumRight = values.reduce((accumulator, value) => {
-        return accumulator + value.multiplier * value.resultRight;
-      }, 0);
-      return sumRight;
-    },
-    total(){
-      return this.sumLeft - this.sumRight;
-    },
+    ...mapState(gameStore, { getCurrentGame: 'currentGame', gameTotal: 'getGameTotal' }),
   },
-
   methods: {
     ...mapActions(gameStore, ['saveGame', 'createGame'])
   }
@@ -42,9 +24,6 @@ export default {
 
     </div>
 
-    <div>
-
-    </div>
     <h1 class="flex justify-center">Game</h1>
     <div class="flex justify-center">ID: {{ getCurrentGame.id }}</div>
     <div class="grid grid-flow-row grid-cols-5 auto-rows-auto gap-4 text-center">
@@ -57,7 +36,8 @@ export default {
 
       <!-- Main -->
     </div>
-    <div v-for="position in getCurrentGame.positions" class="grid grid-flow-row grid-cols-5 auto-rows-auto gap-4 text-center">
+    <div v-for="position in getCurrentGame.positions"
+      class="grid grid-flow-row grid-cols-5 auto-rows-auto gap-4 text-center">
       <div>{{ position.name }}</div>
       <div>{{ position.multiplier }}</div>
       <div><input
@@ -66,16 +46,20 @@ export default {
       <div><input
           class="shadow appearance-none border rounded w-full py-2 px-3 bg-pink-300 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
           v-model.number="position.resultRight"></div>
-      <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" :class="{'bg-emerald-300': ( position.resultLeft - position.resultRight ) > 0, 'bg-pink-300': ( position.resultLeft - position.resultRight ) < 0}">{{ ( position.resultLeft - position.resultRight ) * position.multiplier }}</div>
+      <div
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
+        :class="{ 'bg-emerald-300': (position.resultLeft - position.resultRight) > 0, 'bg-pink-300': (position.resultLeft - position.resultRight) < 0 }">
+        {{ (position.resultLeft - position.resultRight) * position.multiplier }}</div>
     </div>
 
     <!-- Total -->
     <div class="grid grid-flow-row grid-cols-5 auto-rows-auto gap-4 text-center">
-      Total: 
-      <div class="col-end-6" :class="{'bg-emerald-300': this.total > 0, 'bg-pink-300': this.total < 0}">{{ this.total }}</div>
+      Total:
+      <div class="col-end-6" :class="{ 'bg-emerald-300': this.gameTotal > 0, 'bg-pink-300': this.gameTotal < 0 }">{{ this.gameTotal }}
+      </div>
     </div>
-  <div class="flex justify-center">
-    <button
+    <div class="flex justify-center">
+      <button
       class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow m-4"
       @click="saveGame(getCurrentGame)">Save</button>
   </div>
