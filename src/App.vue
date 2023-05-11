@@ -8,8 +8,7 @@ import Navigation from './components/Navigation.vue';
     
     <main>
       <router-view></router-view>
-    </div>
+    </main>
   </div>
-</div>
   
 </template>
