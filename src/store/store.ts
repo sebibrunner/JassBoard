@@ -53,9 +53,9 @@ export const gameStore = defineStore('game-store', {
                 { name: "Schilte", multiplier: 4, resultLeft: 0, resultRight: 0 },
                 { name: "Obeabe", multiplier: 5, resultLeft: 0, resultRight: 0 },
                 { name: "Uneufe", multiplier: 6, resultLeft: 0, resultRight: 0 },
-                { name: "3x3", multiplier: 7, resultLeft: 0, resultRight: 0 },
-                { name: "Slalom", multiplier: 8, resultLeft: 0, resultRight: 0 },
-                { name: "5-4", multiplier: 9, resultLeft: 0, resultRight: 0 },
+                { name: "Slalom", multiplier: 7, resultLeft: 0, resultRight: 0 },
+                { name: "5-4", multiplier: 8, resultLeft: 0, resultRight: 0 },
+                { name: "3x3", multiplier: 9, resultLeft: 0, resultRight: 0 },
                 { name: "Misere", multiplier: 10, resultLeft: 0, resultRight: 0 },
                 { name: "Wunsch", multiplier: 11, resultLeft: 0, resultRight: 0 }
             ]
